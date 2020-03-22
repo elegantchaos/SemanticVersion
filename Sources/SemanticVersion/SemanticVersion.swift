@@ -50,7 +50,7 @@ public struct SemanticVersion: Codable {
     }
 }
 
-func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
+public func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
     if (x.major < y.major) {
         return true
     } else if (x.major > y.major) {
