@@ -3,10 +3,10 @@ import XCTest
 
 final class SemanticVersionTests: XCTestCase {
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SemanticVersion().text, "Hello, World!")
+        let version = SemanticVersion(1, 0, 0)
+        XCTAssertEqual(version.major, 1)
+        XCTAssertEqual(version.minor, 0)
+        XCTAssertEqual(version.patch, 0)
     }
 
     static var allTests = [
