@@ -26,7 +26,7 @@ public struct SemanticVersion: Codable {
         self.patch = patch
     }
 
-    public init?(major: String, minor: String, patch: String) {
+    public init?(major: String, minor: String = "0", patch: String = "0") {
         guard let iMajor = Int(major), let iMinor = Int(minor), let iPatch = Int(patch) else {
             return nil
         }
