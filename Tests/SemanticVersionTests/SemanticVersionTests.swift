@@ -87,4 +87,11 @@ final class SemanticVersionTests: XCTestCase {
         XCTAssertTrue(SemanticVersion(1, 0) == SemanticVersion(1, 0))
         XCTAssertTrue(SemanticVersion(2, 0) > SemanticVersion(1, 0))
     }
+    
+    func testDisplayString() {
+        XCTAssertEqual(SemanticVersion(1,2,3).display(), "1.2.3")
+        XCTAssertEqual(SemanticVersion(1,2,3).display(as: "Test"), "Test 1.2.3")
+        XCTAssertEqual(SemanticVersion(1,2,3).display(build: 456), "1.2.3 (456)")
+        XCTAssertEqual(SemanticVersion(1,2,3).display(as: "Test", build: 456), "Test 1.2.3 (456)")
+    }
 }

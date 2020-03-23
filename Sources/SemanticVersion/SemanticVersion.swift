@@ -8,18 +8,6 @@ public struct SemanticVersion: Codable, Equatable {
     public let minor: Int
     public let patch: Int
 
-    public var asString: String {
-        guard major + minor + patch > 0 else {
-            return "<unknown>"
-        }
-        
-        var string = "\(major).\(minor)"
-        if patch != 0 {
-            string += ".\(patch)"
-        }
-        return string
-    }
-
     public init(_ major: Int = 0, _ minor: Int = 0, _ patch: Int = 0) {
         self.init(major: major, minor: minor, patch: patch)
     }
@@ -56,6 +44,33 @@ public struct SemanticVersion: Codable, Equatable {
         let patch = count > 2 ? String(items[2]) : "0"
         self.init(major: major, minor: minor, patch: patch)
     }
+
+    public var asString: String {
+        guard major + minor + patch > 0 else {
+            return "<unknown>"
+        }
+        
+        var string = "\(major).\(minor)"
+        if patch != 0 {
+            string += ".\(patch)"
+        }
+        return string
+    }
+
+    public func display(as name: String? = nil, build: Int? = nil) -> String {
+        var parts: [String] = []
+        if let name = name {
+            parts.append(name)
+        }
+        
+        parts.append(asString)
+        
+        if let build = build {
+            parts.append("(\(build))")
+        }
+        
+        return parts.joined(separator: " ")
+    }
 }
 
 public func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
@@ -70,6 +85,7 @@ public func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
     } else {
         return x.patch < y.patch
     }
+    
 }
 
 public func >(x: SemanticVersion, y: SemanticVersion) -> Bool {
