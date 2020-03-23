@@ -28,6 +28,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'macOS (Swift 5.0)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     macOS-swift-51:
@@ -49,6 +57,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'macOS (Swift 5.1)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     macOS-swift-52:
@@ -84,6 +100,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'macOS (Swift 5.2 Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     macOS-swift-nightly:
@@ -119,6 +143,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'macOS (Swift Development Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     linux-swift-50:
@@ -141,6 +173,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Linux (Swift 5.0)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     linux-swift-51:
@@ -163,6 +203,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Linux (Swift 5.1)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     linux-swift-52:
@@ -185,6 +233,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Linux (Swift 5.2 Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     linux-swift-nightly:
@@ -207,6 +263,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Linux (Swift Development Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     xcode-swift-50:
@@ -304,6 +368,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Xcode (Swift 5.0)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     xcode-swift-51:
@@ -401,6 +473,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Xcode (Swift 5.1)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     xcode-swift-52:
@@ -512,6 +592,14 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Xcode (Swift 5.2 Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
 
     xcode-swift-nightly:
@@ -623,4 +711,12 @@ jobs:
           with:
             name: logs
             path: logs
+        - name: Slack Notification
+          uses: elegantchaos/slatify@master
+          if: always()
+          with:
+            type: ${{ job.status }}
+            job_name: 'Xcode (Swift Development Nightly)'
+            mention_if: 'failure'
+            url: ${{ secrets.SLACK_WEBHOOK }}
 
