@@ -3,12 +3,16 @@
 //  All code (c) 2020. - present day, Elegant Chaos Limited.
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-public struct SemanticVersion: Codable {
+public struct SemanticVersion: Codable, Equatable {
     public let major: Int
     public let minor: Int
     public let patch: Int
 
     public var asString: String {
+        guard major + minor + patch > 0 else {
+            return "<unknown>"
+        }
+        
         var string = "\(major).\(minor)"
         if patch != 0 {
             string += ".\(patch)"
@@ -16,7 +20,7 @@ public struct SemanticVersion: Codable {
         return string
     }
 
-    public init(_ major: Int, _ minor: Int = 0, _ patch: Int = 0) {
+    public init(_ major: Int = 0, _ minor: Int = 0, _ patch: Int = 0) {
         self.init(major: major, minor: minor, patch: patch)
     }
     
@@ -42,11 +46,15 @@ public struct SemanticVersion: Codable {
             version.remove(at: version.startIndex)
         }
         let items = version.split(separator: ".")
-        guard items.count == 3 else {
+        let count = items.count
+        guard count > 0 else {
             return nil
         }
-        
-        self.init(major: String(items[0]), minor: String(items[1]), patch: String(items[2]))
+
+        let major = String(items[0])
+        let minor = count > 1 ? String(items[1]) : "0"
+        let patch = count > 2 ? String(items[2]) : "0"
+        self.init(major: major, minor: minor, patch: patch)
     }
 }
 
@@ -62,5 +70,8 @@ public func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
     } else {
         return x.patch < y.patch
     }
+}
 
+public func >(x: SemanticVersion, y: SemanticVersion) -> Bool {
+    return y < x
 }
