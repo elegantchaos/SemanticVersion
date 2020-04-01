@@ -6,7 +6,16 @@ extension SemanticVersionTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__SemanticVersionTests = [
+        ("testAsString", testAsString),
+        ("testBadlyFormed", testBadlyFormed),
+        ("testComparison", testComparison),
+        ("testDisplayString", testDisplayString),
         ("testInitialisation", testInitialisation),
+        ("testInitialisationFromArrayLiteral", testInitialisationFromArrayLiteral),
+        ("testInitialisationFromString", testInitialisationFromString),
+        ("testInitialisationFromStringLiteral", testInitialisationFromStringLiteral),
+        ("testInitialisationFromStrings", testInitialisationFromStrings),
+        ("testWithV", testWithV),
     ]
 }
 
