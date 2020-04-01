@@ -19,13 +19,30 @@ final class SemanticVersionTests: XCTestCase {
         XCTAssertEqual(version3.patch, 0)
     }
 
-    func testInitialisationFromStrings() {
-        let version = SemanticVersion(major: "1", minor: "0", patch: "0")!
+    func testInitialisationFromArrayLiteral() {
+        let version: SemanticVersion = [1]
         XCTAssertEqual(version.major, 1)
         XCTAssertEqual(version.minor, 0)
         XCTAssertEqual(version.patch, 0)
 
-        let version2 = SemanticVersion(major: "1", minor: "0")!
+        let version2: SemanticVersion = [1, 2]
+        XCTAssertEqual(version2.major, 1)
+        XCTAssertEqual(version2.minor, 2)
+        XCTAssertEqual(version2.patch, 0)
+
+        let version3: SemanticVersion = [1,2,3]
+        XCTAssertEqual(version3.major, 1)
+        XCTAssertEqual(version3.minor, 2)
+        XCTAssertEqual(version3.patch, 3)
+    }
+
+    func testInitialisationFromStrings() {
+        let version = SemanticVersion(major: "1", minor: "0", patch: "0")
+        XCTAssertEqual(version.major, 1)
+        XCTAssertEqual(version.minor, 0)
+        XCTAssertEqual(version.patch, 0)
+
+        let version2 = SemanticVersion(major: "1", minor: "0")
         XCTAssertEqual(version2.major, 1)
         XCTAssertEqual(version2.minor, 0)
         XCTAssertEqual(version2.patch, 0)
@@ -37,24 +54,41 @@ final class SemanticVersionTests: XCTestCase {
     }
     
     func testInitialisationFromString() {
-        let version = SemanticVersion("1.2.3")!
+        let version = SemanticVersion("1.2.3")
         XCTAssertEqual(version.major, 1)
         XCTAssertEqual(version.minor, 2)
         XCTAssertEqual(version.patch, 3)
 
-        let version2 = SemanticVersion("1.2")!
+        let version2 = SemanticVersion("1.2")
         XCTAssertEqual(version2.major, 1)
         XCTAssertEqual(version2.minor, 2)
         XCTAssertEqual(version2.patch, 0)
 
-        let version3 = SemanticVersion("1")!
+        let version3 = SemanticVersion("1")
+        XCTAssertEqual(version3.major, 1)
+        XCTAssertEqual(version3.minor, 0)
+        XCTAssertEqual(version3.patch, 0)
+    }
+
+    func testInitialisationFromStringLiteral() {
+        let version: SemanticVersion = "1.2.3"
+        XCTAssertEqual(version.major, 1)
+        XCTAssertEqual(version.minor, 2)
+        XCTAssertEqual(version.patch, 3)
+
+        let version2: SemanticVersion = "1.2"
+        XCTAssertEqual(version2.major, 1)
+        XCTAssertEqual(version2.minor, 2)
+        XCTAssertEqual(version2.patch, 0)
+
+        let version3: SemanticVersion = "1"
         XCTAssertEqual(version3.major, 1)
         XCTAssertEqual(version3.minor, 0)
         XCTAssertEqual(version3.patch, 0)
     }
 
     func testWithV() {
-        let version = SemanticVersion("v1.2.3")!
+        let version = SemanticVersion("v1.2.3")
         XCTAssertEqual(version.major, 1)
         XCTAssertEqual(version.minor, 2)
         XCTAssertEqual(version.patch, 3)
@@ -67,11 +101,11 @@ final class SemanticVersionTests: XCTestCase {
     }
     
     func testBadlyFormed() {
-        XCTAssertNil(SemanticVersion(""))
-        XCTAssertNil(SemanticVersion("x"))
-        XCTAssertNil(SemanticVersion(major: "1", minor: "2", patch: "x"))
-        XCTAssertNil(SemanticVersion(major: "1", minor: "x", patch: "3"))
-        XCTAssertNil(SemanticVersion(major: "x", minor: "2", patch: "3"))
+        XCTAssertTrue(SemanticVersion("").isInvalid)
+        XCTAssertTrue(SemanticVersion("x").isInvalid)
+        XCTAssertTrue(SemanticVersion(major: "1", minor: "2", patch: "x").isInvalid)
+        XCTAssertTrue(SemanticVersion(major: "1", minor: "x", patch: "3").isInvalid)
+        XCTAssertTrue(SemanticVersion(major: "x", minor: "2", patch: "3").isInvalid)
     }
     
     func testComparison() {
