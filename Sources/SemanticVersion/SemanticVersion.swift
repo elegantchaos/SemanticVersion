@@ -56,6 +56,10 @@ public struct SemanticVersion: Codable, Equatable {
     }
 
     public var asString: String {
+        return asString(dropTrailingZeros: true)
+    }
+
+    public func asString(dropTrailingZeros: Bool = true) -> String {
         guard !isInvalid else {
             return "<invalid>"
         }
@@ -65,7 +69,7 @@ public struct SemanticVersion: Codable, Equatable {
         }
         
         var string = "\(major).\(minor)"
-        if patch != 0 {
+        if !dropTrailingZeros || patch != 0 {
             string += ".\(patch)"
         }
         return string
