@@ -91,25 +91,6 @@ public struct SemanticVersion: Codable, Equatable {
     }
 }
 
-public func <(x: SemanticVersion, y: SemanticVersion) -> Bool {
-    if (x.major < y.major) {
-        return true
-    } else if (x.major > y.major) {
-        return false
-    } else if (x.minor < y.minor) {
-        return true
-    } else if (x.minor > y.minor) {
-        return false
-    } else {
-        return x.patch < y.patch
-    }
-    
-}
-
-public func >(x: SemanticVersion, y: SemanticVersion) -> Bool {
-    return y < x
-}
-
 extension SemanticVersion: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self.init(value)
